@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Звіт про продаж товарів, прибутки та залишки на складі</title>
+</head>
+<body>
+	<h1>Звіт за період з {{ start_date }} по {{ end_date }}</h1>
+	<h2>Продаж товарів</h2>
+	<table>
+		<tr>
+			<th>Дата</th>
+			<th>Назва товару</th>
+			<th>Кількість</th>
+			<th>Ціна</th>
+			<th>Загальна вартість</th>
+		</tr>
+		{% for sale in sales %}
+		<tr>
+			<td>{{ sale.date }}</td>
+			<td>{{ sale.product.name }}</td>
+			<td>{{ sale.quantity }}</td>
+			<td>{{ sale.price }}</td>
+			<td>{{ sale.total }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+
+	<h2>Прибутки</h2>
+	<p>Загальний прибуток за період: {{ total_profit }}</p>
+
+	<h2>Залишки на складі</h2>
+	<table>
+		<tr>
+			<th>Назва товару</th>
+			<th>Кількість на складі</th>
+		</tr>
+		{% for stock in stocks %}
+		<tr>
+			<td>{{ stock.product.name }}</td>
+			<td>{{ stock.quantity }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+</body>
+</html>
